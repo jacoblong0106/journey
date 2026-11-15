@@ -162,13 +162,13 @@ function show(i){
   h+='</ol>';
  }
  view.innerHTML=h;reveal();
- [].forEach.call(view.querySelectorAll(".day"),function(b){b.onclick=function(){show(+b.dataset.i);tabs.scrollIntoView()}});
+ [].forEach.call(view.querySelectorAll(".day"),function(b){b.onclick=function(){show(+b.dataset.i);window.scrollTo({top:0,behavior:"smooth"})}});
  [].forEach.call(tabs.children,function(b,j){b.setAttribute("aria-selected",j-1==i)});
  try{history.replaceState(null,"","#"+HS[i+1])}catch(e){}
 }
 ["首頁","Day 1","Day 2","Day 3","天氣","住宿"].forEach(function(n,j){
  var b=document.createElement("button");b.textContent=n;b.setAttribute("role","tab");
- b.onclick=function(){show(j-1)};tabs.appendChild(b)});
+ b.onclick=function(){show(j-1);window.scrollTo({top:0,behavior:"smooth"})};tabs.appendChild(b)});
 var hi=HS.indexOf((location.hash||"").slice(1));show(hi<1?-1:hi-1);
 var S=new Date("2026-11-16T08:00:00+08:00"),E=new Date("2026-11-18T23:59:59+08:00");
 function tick(){
